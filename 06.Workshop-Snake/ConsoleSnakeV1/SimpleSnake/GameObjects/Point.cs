@@ -32,6 +32,7 @@ namespace SimpleSnake.GameObjects
             }
         }
         
+
         public int TopY
         {
             get
