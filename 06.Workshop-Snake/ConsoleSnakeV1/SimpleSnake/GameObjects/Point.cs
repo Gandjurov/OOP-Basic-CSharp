@@ -21,7 +21,7 @@ namespace SimpleSnake.GameObjects
             {
                 return leftX;
             }
-            private set
+            set
             {
                 //TODO think about directions
                 if (value < 0 || value > Console.WindowWidth)
@@ -39,7 +39,7 @@ namespace SimpleSnake.GameObjects
             {
                 return topY;
             }
-            private set
+            set
             {
                 if (value < 0 || value > Console.WindowHeight)
                 {
