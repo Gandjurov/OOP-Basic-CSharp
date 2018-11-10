@@ -3,14 +3,16 @@
     using SimpleSnake.GameObjects;
     using Utilities;
     using System;
+    using SimpleSnake.GameObjects.Foods;
+    using System.Collections.Generic;
 
     public class StartUp
     {
         public static void Main()
         {
             Wall wall = new Wall(60, 20);
-            Console.ReadLine();
 
+            Console.ReadLine();
             ConsoleWindow.CustomizeConsole();
         }
     }
