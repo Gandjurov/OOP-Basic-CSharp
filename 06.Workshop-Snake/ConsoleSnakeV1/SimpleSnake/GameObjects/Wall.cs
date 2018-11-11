@@ -14,6 +14,13 @@ namespace SimpleSnake.GameObjects
             this.InitializeWallBorders();
         }
         
+        public bool IsPointOfWall(Point snake)
+        {
+            //TODO check borders
+            return snake.LeftX == 0 || snake.LeftX == this.LeftX ||
+                snake.TopY == 0 || snake.TopY == this.TopY;
+        }
+
         private void SetHorizontalLine(int topY)
         {
             for (int leftX = 0; leftX < this.LeftX; leftX++)
