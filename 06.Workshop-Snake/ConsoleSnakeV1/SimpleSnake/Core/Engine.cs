@@ -4,6 +4,7 @@ using SimpleSnake.GameObjects.Foods;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace SimpleSnake.Core
 {
@@ -13,6 +14,7 @@ namespace SimpleSnake.Core
         private Direction direction;
         private Snake snake;
         private Wall wall;
+        private double sleepTime;
 
         public Engine(Snake snake, Wall wall)
         {
@@ -20,19 +22,33 @@ namespace SimpleSnake.Core
             this.direction = Direction.Right;
             this.snake = snake;
             this.wall = wall;
+            this.sleepTime = 100;
         }
 
         public void Run()
         {
             this.CreateDirections();
-            
 
-            bool isMoving = this.snake.IsMoving(this.pointsOfDirection[(int)direction]);
-
-            if (!isMoving)
+            while (true)
             {
-                AskUserForRestart();
+                if (Console.KeyAvailable)
+                {
+                    this.GetNextDirection();
+                }
+
+                bool isMoving = this.snake.IsMoving(this.pointsOfDirection[(int)direction]);
+
+                if (!isMoving)
+                {
+                    AskUserForRestart();
+                }
+
+                sleepTime -= 0.1;
+
+                Thread.Sleep((int)sleepTime);
             }
+
+            
         }
 
         private void AskUserForRestart()
