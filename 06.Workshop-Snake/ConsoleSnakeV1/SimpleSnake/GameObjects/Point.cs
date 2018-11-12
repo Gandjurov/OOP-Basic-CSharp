@@ -24,7 +24,7 @@ namespace SimpleSnake.GameObjects
             set
             {
                 //TODO think about directions
-                if (value < 0 || value > Console.WindowWidth)
+                if (value < -1 || value > Console.WindowWidth)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -41,7 +41,7 @@ namespace SimpleSnake.GameObjects
             }
             set
             {
-                if (value < 0 || value > Console.WindowHeight)
+                if (value < -1 || value > Console.WindowHeight)
                 {
                     throw new IndexOutOfRangeException();
                 }

@@ -18,7 +18,7 @@ namespace SimpleSnake.GameObjects
         {
             //TODO check borders
             return snake.LeftX == 0 || snake.LeftX == this.LeftX ||
-                snake.TopY == 0 || snake.TopY == this.TopY;
+                snake.TopY == 0 || snake.TopY == this.TopY - 1;
         }
 
         private void SetHorizontalLine(int topY)

@@ -6,18 +6,19 @@
     using SimpleSnake.GameObjects.Foods;
     using System.Collections.Generic;
     using System.Threading;
+    using SimpleSnake.Core;
 
     public class StartUp
     {
         public static void Main()
         {
-            Thread.Sleep(5000);
-            Console.WriteLine("Zdrasti");
-            Console.ReadLine();
+            ConsoleWindow.CustomizeConsole();
 
             Wall wall = new Wall(60, 20);
-            
-            ConsoleWindow.CustomizeConsole();
+            Snake snake = new Snake(wall);
+
+            Engine engine = new Engine(snake, wall);
+            engine.Run();
         }
     }
 }

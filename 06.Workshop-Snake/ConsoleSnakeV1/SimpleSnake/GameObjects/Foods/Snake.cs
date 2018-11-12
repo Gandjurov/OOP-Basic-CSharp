@@ -23,19 +23,20 @@ namespace SimpleSnake.GameObjects.Foods
             this.foods = new Food[3];
             this.foodIndex = this.RandomFoodNumber;
             this.snakeElements = new Queue<Point>();
-            this.CreateSnake();
             this.GetFoods();
+            this.CreateSnake();
         }
-
-        public int RandomFoodNumber => new Random().Next(0, this.foods.Length);
-
+        
         private void CreateSnake()
         {
             for (int leftX = 1; leftX <= 6; leftX++)
             {
-                this.snakeElements.Enqueue(new Point(leftX, 2));
+                this.snakeElements.Enqueue(new Point(leftX, 2)); 
             }
+            this.foods[this.foodIndex].SetRandomPosition(snakeElements);
         }
+
+        public int RandomFoodNumber => new Random().Next(0, this.foods.Length);
 
         public bool IsMoving(Point direction)
         {
@@ -80,7 +81,7 @@ namespace SimpleSnake.GameObjects.Foods
             for (int i = 0; i < length; i++)
             {
                 this.snakeElements.Enqueue(new Point(this.nextLeftX, this.nextTopY));
-                GetNextPoint(direction, currentSnakeHead);
+                this.GetNextPoint(direction, currentSnakeHead);
             }
 
             this.foodIndex = this.RandomFoodNumber;
