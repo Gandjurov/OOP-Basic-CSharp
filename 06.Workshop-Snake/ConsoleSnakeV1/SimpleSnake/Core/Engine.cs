@@ -48,7 +48,7 @@ namespace SimpleSnake.Core
                 Thread.Sleep((int)sleepTime);
             }
 
-            
+
         }
 
         private void AskUserForRestart()

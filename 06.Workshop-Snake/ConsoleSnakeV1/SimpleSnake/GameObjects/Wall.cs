@@ -8,6 +8,8 @@ namespace SimpleSnake.GameObjects
     {
         private const char wallSymbol = '\u25A0';
 
+        private int playerPoints;
+
         public Wall(int leftX, int topY) 
             : base(leftX, topY)
         {
@@ -16,7 +18,6 @@ namespace SimpleSnake.GameObjects
         
         public bool IsPointOfWall(Point snake)
         {
-            //TODO check borders
             return snake.LeftX == 0 || snake.LeftX == this.LeftX ||
                 snake.TopY == 0 || snake.TopY == this.TopY - 1;
         }
@@ -44,5 +45,36 @@ namespace SimpleSnake.GameObjects
             this.SetVerticalLine(0);
             this.SetVerticalLine(this.LeftX);
         }
+
+        public void AddPoint(int points)
+        {
+            this.playerPoints += points;
+
+        }
+
+        //quick example
+        private int GetLevel()
+        {
+            if (this.playerPoints < 10)
+            {
+                return 1;
+            }
+            else if (playerPoints >= 10 && playerPoints <= 20)
+            {
+                return 2;
+            }
+
+            return 3;
+        }
+
+        public void PlayerInfo()
+        {
+            Console.SetCursorPosition(this.LeftX + 3, 0);
+            Console.Write($"Player Points: {this.playerPoints}");
+            Console.SetCursorPosition(this.LeftX + 3, 1);
+            Console.WriteLine($"Player level: {this.playerPoints / 20}");
+        }
+
+        
     }
 }

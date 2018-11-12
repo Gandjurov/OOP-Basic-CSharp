@@ -23,7 +23,6 @@ namespace SimpleSnake.GameObjects
             }
             set
             {
-                //TODO think about directions
                 if (value < -1 || value > Console.WindowWidth)
                 {
                     throw new IndexOutOfRangeException();

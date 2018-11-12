@@ -84,6 +84,8 @@ namespace SimpleSnake.GameObjects.Foods
                 this.GetNextPoint(direction, currentSnakeHead);
             }
 
+            this.wall.AddPoint(length);
+            this.wall.PlayerInfo();
             this.foodIndex = this.RandomFoodNumber;
             this.foods[foodIndex].SetRandomPosition(snakeElements);
 
