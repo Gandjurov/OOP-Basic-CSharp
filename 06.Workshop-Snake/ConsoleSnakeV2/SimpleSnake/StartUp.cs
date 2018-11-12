@@ -14,10 +14,10 @@
         {
             ConsoleWindow.CustomizeConsole();
 
-            Wall wall = new Wall(60, 20);
-            Snake snake = new Snake(wall);
+            //Wall wall = new Wall(60, 20);
+            Snake snake = new Snake();
 
-            Engine engine = new Engine(snake, wall);
+            Engine engine = new Engine(snake);
             engine.Run();
         }
     }

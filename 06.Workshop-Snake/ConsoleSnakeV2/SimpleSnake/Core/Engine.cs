@@ -13,15 +13,13 @@ namespace SimpleSnake.Core
         private Point[] pointsOfDirection;
         private Direction direction;
         private Snake snake;
-        private Wall wall;
         private double sleepTime;
 
-        public Engine(Snake snake, Wall wall)
+        public Engine(Snake snake)
         {
             this.pointsOfDirection = new Point[4];
             this.direction = Direction.Right;
             this.snake = snake;
-            this.wall = wall;
             this.sleepTime = 100;
         }
 
@@ -53,8 +51,8 @@ namespace SimpleSnake.Core
 
         private void AskUserForRestart()
         {
-            int leftX = this.wall.LeftX + 2;
-            int topY = 2;
+            int leftX = Console.WindowWidth / 2;
+            int topY = Console.WindowHeight / 2;
 
             Console.SetCursorPosition(leftX, topY);
             Console.Write("Would you like to continue? y/n");
