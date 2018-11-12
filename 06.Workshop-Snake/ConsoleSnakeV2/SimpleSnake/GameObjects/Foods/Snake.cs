@@ -51,9 +51,28 @@ namespace SimpleSnake.GameObjects.Foods
                 return false;
             }
 
-            Point snakeNewHead = new Point(this.nextLeftX, this.nextTopY);
 
+            Point snakeNewHead = new Point(this.nextLeftX, this.nextTopY);
             
+            //screen width
+            if (snakeNewHead.LeftX == -1)
+            {
+                snakeNewHead.LeftX = Console.WindowWidth - 1;
+            }
+            else if (snakeNewHead.LeftX == Console.WindowWidth)
+            {
+                snakeNewHead.LeftX = 0;
+            }
+
+            //screan height
+            if (snakeNewHead.TopY == -1)
+            {
+                snakeNewHead.TopY = Console.WindowHeight - 1;
+            }
+            else if (snakeNewHead.TopY == Console.WindowHeight)
+            {
+                snakeNewHead.TopY = 0;
+            }
 
             this.snakeElements.Enqueue(snakeNewHead);
             snakeNewHead.Draw(snakeSymbol);
