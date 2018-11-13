@@ -10,9 +10,10 @@ namespace CustomList
 
             softUniList.Add("Gosho");
             softUniList.Add("Pesho");
-            softUniList.Add("Ivan");
+            softUniList.Add("Pesho");
+            softUniList.Remove("Ivan");
 
-            
+
         }
     }
 }

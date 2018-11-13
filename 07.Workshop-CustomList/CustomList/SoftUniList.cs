@@ -21,6 +21,7 @@ namespace CustomList
 
         public int Count { get; private set; }
 
+        //Add
         public void Add(string item)
         {
             if (this.Count == this.array.Length)
@@ -30,16 +31,40 @@ namespace CustomList
             this.array[this.Count++] = item;
         }
 
+        //Remove
+        internal void Remove(string item)
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (this.array[i] == item)
+                {
+                    this.array[i] = null;
+                    this.Count--;
+                    this.Shrink(i);
+                }
+            }
+        }
+
+        //Shrink
+        private void Shrink(int index)
+        {
+            for (int i = index; i < this.Count; i++)
+            {
+                this.array[i] = this.array[i + 1];
+            }
+        }
+
+        //Resize
         private void Resize()
         {
-            string[] copyArray = new string[this.array.Length * 2];
+            string[] newArray = new string[this.array.Length * 2];
 
             for (int i = 0; i < this.array.Length; i++)
             {
-                copyArray[i] = array[i];
+                newArray[i] = array[i];
             }
 
-            this.array = copyArray;
+            this.array = newArray;
         }
     }
 }
