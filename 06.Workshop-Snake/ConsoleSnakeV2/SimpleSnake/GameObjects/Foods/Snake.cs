@@ -76,7 +76,7 @@ namespace SimpleSnake.GameObjects.Foods
                 snakeNewHead.TopY = 0;
             }
 
-            if (DateTime.Now.Millisecond % 90 == 0)
+            if (DateTime.Now.Millisecond % 20 == 0)
             {
                 this.obstacle.SetRandomObstacle(snakeElements, direction);
             }
@@ -87,7 +87,10 @@ namespace SimpleSnake.GameObjects.Foods
             }
 
             this.snakeElements.Enqueue(snakeNewHead);
+
+            Console.BackgroundColor = ConsoleColor.Red;
             snakeNewHead.Draw(snakeSymbol);
+            Console.BackgroundColor = ConsoleColor.White;
 
             if (this.foods[this.foodIndex].IsFoodPoint(snakeNewHead))
             {
@@ -95,9 +98,9 @@ namespace SimpleSnake.GameObjects.Foods
             }
 
             Point snakeTail = this.snakeElements.Dequeue();
-
+            
             snakeTail.Draw(' ');
-
+            
             return true;
         }
 
