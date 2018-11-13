@@ -68,7 +68,7 @@ namespace SimpleSnake.GameObjects
             Console.WriteLine(symbol);
         }
 
-        public void SetRandomPosition(Queue<Point> snakeElements, char symbol = '@')
+        public Point GetRandomPosition(Queue<Point> snakeElements)
         {
             this.LeftX = this.random.Next(2, Console.WindowWidth - 2);
             this.TopY = this.random.Next(2, Console.WindowHeight - 2);
@@ -83,9 +83,7 @@ namespace SimpleSnake.GameObjects
                 isPointOfSnake = snakeElements.Any(x => x.TopY == this.TopY && x.LeftX == this.LeftX);
             }
 
-            //Console.BackgroundColor = ConsoleColor.Red;
-            this.Draw(symbol);
-            //Console.BackgroundColor = ConsoleColor.White;
+            return new Point(this.LeftX, this.TopY);
         }
     }
 }

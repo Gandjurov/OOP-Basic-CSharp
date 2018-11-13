@@ -11,6 +11,7 @@ namespace SimpleSnake.GameObjects.Foods
 
         private Queue<Point> snakeElements;
         private Food[] foods;
+        private Obstacle obstacle;
 
         private int nextLeftX;
         private int nextTopY;
@@ -23,6 +24,7 @@ namespace SimpleSnake.GameObjects.Foods
             this.snakeElements = new Queue<Point>();
             this.GetFoods();
             this.CreateSnake();
+            this.obstacle = new Obstacle();
         }
         
         private void CreateSnake()
@@ -31,7 +33,7 @@ namespace SimpleSnake.GameObjects.Foods
             {
                 this.snakeElements.Enqueue(new Point(leftX, 2)); 
             }
-            this.foods[this.foodIndex].SetRandomPosition(snakeElements);
+            this.foods[this.foodIndex].SetRandomFood(snakeElements);
         }
 
         public int RandomFoodNumber => new Random().Next(0, this.foods.Length);
@@ -74,6 +76,16 @@ namespace SimpleSnake.GameObjects.Foods
                 snakeNewHead.TopY = 0;
             }
 
+            if (DateTime.Now.Millisecond % 100 < 10)
+            {
+                this.obstacle.SetRandomObstacle(snakeElements);
+            }
+
+            if (this.obstacle.isObstacle(snakeNewHead))
+            {
+                return false;
+            }
+
             this.snakeElements.Enqueue(snakeNewHead);
             snakeNewHead.Draw(snakeSymbol);
 
@@ -100,7 +112,7 @@ namespace SimpleSnake.GameObjects.Foods
             }
 
             this.foodIndex = this.RandomFoodNumber;
-            this.foods[foodIndex].SetRandomPosition(snakeElements);
+            this.foods[foodIndex].SetRandomFood(snakeElements);
 
         }
 
