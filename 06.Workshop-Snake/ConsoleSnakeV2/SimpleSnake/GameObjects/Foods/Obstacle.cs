@@ -20,19 +20,37 @@ namespace SimpleSnake.GameObjects.Foods
             return this.obstacles.Any(x => x.LeftX == snakePoint.LeftX && x.TopY == snakePoint.TopY);
         }
 
-        public void SetRandomObstacle(Queue<Point> snakeElements)
+        public IReadOnlyCollection<Point> Obstacles
+        {
+            get
+            {
+                return this.obstacles.AsReadOnly();
+            }
+        }
+
+        public void SetRandomObstacle(Queue<Point> snakeElements, Point direction)
         {
             Point point = this.GetRandomPosition(snakeElements);
-            this.obstacles.Add(point);
-            point.Draw(obstacleSymbol);
-
             Point snakeHead = snakeElements.Last();
 
-            //TODO fix that
-            //if (point.LeftX == snakeHead.LeftX)
-            //{
+            int nextLeftX = snakeHead.LeftX + direction.LeftX;
+            int nextTopY = snakeHead.TopY + direction.TopY;
 
-            //}
+            bool isObstacle = point.LeftX == nextLeftX && point.TopY == nextTopY;
+
+            while (isObstacle)
+            {
+                point = this.GetRandomPosition(snakeElements);
+
+                nextLeftX = snakeHead.LeftX + direction.LeftX;
+                nextTopY = snakeHead.TopY + direction.TopY;
+
+
+                isObstacle = point.LeftX == nextLeftX && point.TopY == nextTopY;
+            }
+
+            this.obstacles.Add(point);
+            point.Draw(obstacleSymbol);
         }
 
     }

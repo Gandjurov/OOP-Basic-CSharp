@@ -26,10 +26,19 @@ namespace SimpleSnake.GameObjects.Foods
             return this.LeftX == snake.LeftX && this.TopY == snake.TopY;
         }
 
-        //TODO add obstacle checking
-        public void SetRandomFood(Queue<Point> snakeElements)
+        public void SetRandomFood(Queue<Point> snakeElements, IReadOnlyCollection<Point> obstacles)
         {
             Point food = this.GetRandomPosition(snakeElements);
+
+            bool isFood = obstacles.Any(x => x.LeftX == food.LeftX && x.TopY == food.TopY);
+
+            while (isFood)
+            {
+                food = this.GetRandomPosition(snakeElements);
+
+                isFood = obstacles.Any(x => x.LeftX == food.LeftX && x.TopY == food.TopY);
+            }
+
             food.Draw(foodSymbol);
         }
     }
