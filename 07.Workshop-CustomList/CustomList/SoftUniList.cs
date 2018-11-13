@@ -5,25 +5,25 @@ using System.Text;
 
 namespace CustomList
 {
-    public class SoftUniList : IEnumerable
+    public class SoftUniList<T> : IEnumerable
     {
         private const int initialCapacity = 2;
         //add
         //remove
         //read
 
-        private string[] array;
+        private T[] array;
 
         public SoftUniList()
         {
-            this.array = new string[initialCapacity];
+            this.array = new T[initialCapacity];
             this.Count = 0;
         }
 
         public int Count { get; private set; }
 
         //Add
-        public void Add(string item)
+        public void Add(T item)
         {
             if (this.Count == this.array.Length)
             {
@@ -33,20 +33,20 @@ namespace CustomList
         }
 
         //Remove
-        internal void Remove(string item)
+        internal void Remove(T item)
         {
             for (int i = 0; i < this.Count; i++)
             {
-                if (this.array[i] == item)
+                if (this.array[i].Equals(item))
                 {
-                    this.array[i] = null;
+                    this.array[i] = default(T);
                     this.Count--;
                     this.Shrink(i);
                 }
             }
         }
         
-        public string this[int number]
+        public T this[int number]
         {
             get
             {
@@ -54,13 +54,18 @@ namespace CustomList
                 {
                     return this.array[number];
                 }
-                return "Error";
+
+                throw new IndexOutOfRangeException();
             }
             set
             {
                 if (number >= 0 && number < this.Count)
                 {
                     this.array[number] = value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
                 }
             }
         }
@@ -76,7 +81,7 @@ namespace CustomList
         //Resize
         private void Resize()
         {
-            string[] newArray = new string[this.array.Length * 2];
+            T[] newArray = new T[this.array.Length * 2];
 
             for (int i = 0; i < this.array.Length; i++)
             {

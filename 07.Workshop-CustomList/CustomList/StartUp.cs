@@ -6,7 +6,7 @@ namespace CustomList
     {
         public static void Main(string[] args)
         {
-            SoftUniList softUniList = new SoftUniList();
+            SoftUniList<string> softUniList = new SoftUniList<string>();
 
             softUniList.Add("Gosho");
             softUniList.Add("Pesho");
