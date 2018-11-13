@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CustomList
 {
-    public class SoftUniList
+    public class SoftUniList : IEnumerable
     {
         private const int initialCapacity = 2;
         //add
@@ -44,13 +45,31 @@ namespace CustomList
                 }
             }
         }
-
-        //Shrink
-        private void Shrink(int index)
+        
+        public string this[int number]
         {
-            for (int i = index; i < this.Count; i++)
+            get
             {
-                this.array[i] = this.array[i + 1];
+                if (number >= 0 && number < this.Count)
+                {
+                    return this.array[number];
+                }
+                return "Error";
+            }
+            set
+            {
+                if (number >= 0 && number < this.Count)
+                {
+                    this.array[number] = value;
+                }
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                yield return this.array[i];
             }
         }
 
@@ -65,6 +84,15 @@ namespace CustomList
             }
 
             this.array = newArray;
+        }
+
+        //Shrink
+        private void Shrink(int index)
+        {
+            for (int i = index; i < this.Count; i++)
+            {
+                this.array[i] = this.array[i + 1];
+            }
         }
     }
 }
