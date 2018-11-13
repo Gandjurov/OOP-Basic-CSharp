@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SimpleSnake.GameObjects
@@ -8,13 +9,15 @@ namespace SimpleSnake.GameObjects
     {
         private int leftX;
         private int topY;
+        private Random random;
 
         public Point()
         {
-
+            this.random = new Random();
         }
 
-        public Point(int leftX, int topY)
+        public Point(int leftX, int topY) 
+            : this()
         {
             this.LeftX = leftX;
             this.TopY = topY;
@@ -63,6 +66,26 @@ namespace SimpleSnake.GameObjects
         {
             Console.SetCursorPosition(leftX, topY);
             Console.WriteLine(symbol);
+        }
+
+        public void SetRandomPosition(Queue<Point> snakeElements, char symbol = '@')
+        {
+            this.LeftX = this.random.Next(2, Console.WindowWidth - 2);
+            this.TopY = this.random.Next(2, Console.WindowHeight - 2);
+
+            bool isPointOfSnake = snakeElements.Any(x => x.TopY == this.TopY && x.LeftX == this.LeftX);
+
+            while (isPointOfSnake)
+            {
+                this.LeftX = this.random.Next(2, Console.WindowWidth - 2);
+                this.TopY = this.random.Next(2, Console.WindowHeight - 2);
+
+                isPointOfSnake = snakeElements.Any(x => x.TopY == this.TopY && x.LeftX == this.LeftX);
+            }
+
+            //Console.BackgroundColor = ConsoleColor.Red;
+            this.Draw(symbol);
+            //Console.BackgroundColor = ConsoleColor.White;
         }
     }
 }
