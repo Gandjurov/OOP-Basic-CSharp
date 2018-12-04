@@ -6,7 +6,7 @@
 <h5><i>Summary:</i></h5>
 
 <ul>
-	<li><a href=" "> </a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/01.DefiningClasses">Defining Classes</a></li>
 	<li><a href=" "> </a></li>
 	<li><a href=" "> </a></li>
 	<li><a href=" "> </a></li>
