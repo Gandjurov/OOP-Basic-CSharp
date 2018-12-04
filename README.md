@@ -9,11 +9,11 @@
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/01.DefiningClasses">Defining Classes</a></li>
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/02.WorkingWithAbstraction/WorkingWithAbstraction">Working with Abstraction</a></li>
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/02.WorkingWithAbstraction/Refactoring">Refactoring</a></li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/03.Encapsulation"> </a>Encapsulation</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/04.Inheritance"> </a>Inheritance</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/05.InterfacesAndAbstraction"> </a>Interfaces And Abstraction</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/06.Workshop-Snake"> </a>Workshop: Console Snake</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/07.Workshop-CustomList"> </a>Workshop: Custom List</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/08.Polymorphism"> </a>Polymorphism</li>
-	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/10.ExamPreparationOOP"> </a>Exam Preparation</li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/03.Encapsulation"> Encapsulation</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/04.Inheritance"> Inheritance</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/05.InterfacesAndAbstraction"> Interfaces And Abstraction</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/06.Workshop-Snake"> Workshop: Console Snake</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/07.Workshop-CustomList"> Workshop: Custom List</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/08.Polymorphism"> Polymorphism</a></li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/10.ExamPreparationOOP"> Exam Preparation</a></li>
 </ul>
