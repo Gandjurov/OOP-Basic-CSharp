@@ -13,7 +13,7 @@
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/04.Inheritance"> </a>Inheritance</li>
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/05.InterfacesAndAbstraction"> </a>Interfaces And Abstraction</li>
 	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/06.Workshop-Snake"> </a>Workshop: Console Snake</li>
-	<li><a href=" "> </a>Workshop: Custom List</li>
-	<li><a href=" "> </a>Polymorphism</li>
-	<li><a href=" "> </a>Exam Preparation</li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/07.Workshop-CustomList"> </a>Workshop: Custom List</li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/08.Polymorphism"> </a>Polymorphism</li>
+	<li><a href="https://github.com/Gandjurov/OOP-Basic-CSharp/tree/master/10.ExamPreparationOOP"> </a>Exam Preparation</li>
 </ul>
