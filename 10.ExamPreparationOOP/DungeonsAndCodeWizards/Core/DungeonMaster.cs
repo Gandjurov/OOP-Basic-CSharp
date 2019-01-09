@@ -110,7 +110,10 @@ namespace DungeonsAndCodeWizards.Core
 
             foreach (var character in characters.OrderByDescending(x => x.IsAlive).ThenByDescending(x => x.Health))
             {
-                sb.AppendLine($"{character.Name} - HP: {character.Health}/{character.BaseHealth}, AP: {character.Armor}/{character.BaseArmor}, Status: {(character.IsAlive ? "Alive" : "Dead")}");
+                sb.AppendLine($"{character.Name} - " +
+                    $"HP: {character.Health}/{character.BaseHealth}, " +
+                    $"AP: {character.Armor}/{character.BaseArmor}, " +
+                    $"Status: {(character.IsAlive ? "Alive" : "Dead")}");
             }
 
             return sb.ToString().TrimEnd();
@@ -159,7 +162,8 @@ namespace DungeonsAndCodeWizards.Core
 
             ((Cleric)healer).Heal(receiver);
 
-            return $"{healer.Name} heals {receiver.Name} for {healer.AbilityPoints}! {receiver.Name} has {receiver.Health} health now!";
+            return $"{healer.Name} heals {receiver.Name} for {healer.AbilityPoints}! " +
+                $"{receiver.Name} has {receiver.Health} health now!";
         }
 
         public string EndTurn(string[] args)

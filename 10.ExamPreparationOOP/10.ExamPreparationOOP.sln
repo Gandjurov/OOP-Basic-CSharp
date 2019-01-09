@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageMaster-Contest992", "StorageMaster-Contest992\StorageMaster-Contest992.csproj", "{9BA056F0-9D80-4CF8-8758-DC3F604C30AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageMaster-Contest992", "StorageMaster-Contest992\StorageMaster-Contest992.csproj", "{9BA056F0-9D80-4CF8-8758-DC3F604C30AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonsAndCodeWizards", "DungeonsAndCodeWizards\DungeonsAndCodeWizards.csproj", "{C501B285-D1EC-45B7-B66C-367809E5484C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalCentre", "AnimalCentre\AnimalCentre.csproj", "{F77EF9A2-B7A0-4EF1-8CFE-4308D204BF73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9BA056F0-9D80-4CF8-8758-DC3F604C30AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA056F0-9D80-4CF8-8758-DC3F604C30AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA056F0-9D80-4CF8-8758-DC3F604C30AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C501B285-D1EC-45B7-B66C-367809E5484C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C501B285-D1EC-45B7-B66C-367809E5484C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C501B285-D1EC-45B7-B66C-367809E5484C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C501B285-D1EC-45B7-B66C-367809E5484C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F77EF9A2-B7A0-4EF1-8CFE-4308D204BF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77EF9A2-B7A0-4EF1-8CFE-4308D204BF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77EF9A2-B7A0-4EF1-8CFE-4308D204BF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77EF9A2-B7A0-4EF1-8CFE-4308D204BF73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
