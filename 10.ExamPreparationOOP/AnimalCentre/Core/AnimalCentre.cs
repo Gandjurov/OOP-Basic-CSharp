@@ -33,23 +33,23 @@ namespace AnimalCentre.Core
             services.Add("Vaccinate", new Vaccinate());
         }
 
-        public string RegisterAnimal(string type, string name, int energy, int happiness, int procedureTime)
+        public string RegisterAnimal(string type, string name, int energy, int happiness, int playTime)
         {
             IAnimal newAnimal = null;
 
             switch (type)
             {
                 case "Lion":
-                    newAnimal = new Lion(name, energy, happiness, procedureTime);
+                    newAnimal = new Lion(name, energy, happiness, playTime);
                     break;
                 case "Dog":
-                    newAnimal = new Dog(name, energy, happiness, procedureTime);
+                    newAnimal = new Dog(name, energy, happiness, playTime);
                     break;
                 case "Pig":
-                    newAnimal = new Pig(name, energy, happiness, procedureTime);
+                    newAnimal = new Pig(name, energy, happiness, playTime);
                     break;
                 case "Cat":
-                    newAnimal = new Cat(name, energy, happiness, procedureTime);
+                    newAnimal = new Cat(name, energy, happiness, playTime);
                     break;
             }
 

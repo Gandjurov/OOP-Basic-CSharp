@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnimalCentre.Core;
+using AnimalCentre.IO;
+using System;
 
 namespace AnimalCentre
 {
@@ -6,7 +8,11 @@ namespace AnimalCentre
     {
         public static void Main()
         {
+            IReader reader = new Reader();
+            IWriter writer = new Writer();
 
+            var engine = new Engine(reader, writer);
+            engine.Run();
         }
     }
 }
