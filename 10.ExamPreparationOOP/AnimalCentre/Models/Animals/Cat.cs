@@ -11,7 +11,7 @@ namespace AnimalCentre.Models.Animals
 
         public override string ToString()
         {
-            return string.Format(base.ToString(), nameof(Cat), Name, Happiness, Energy);
+            return $"    Animal type: {nameof(Cat)} - {Name} - Happiness: {Happiness} - Energy: {Energy}";
         }
     }
 }
