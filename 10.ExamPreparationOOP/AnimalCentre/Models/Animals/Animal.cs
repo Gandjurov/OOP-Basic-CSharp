@@ -1,9 +1,6 @@
-﻿using AnimalCentre.Models.Animals.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace AnimalCentre.Models.Animals
+namespace AnimalCentre.Models.Contracts
 {
     public abstract class Animal : IAnimal
     {

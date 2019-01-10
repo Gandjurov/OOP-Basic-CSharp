@@ -1,6 +1,4 @@
-﻿using AnimalCentre.Models.Animals;
-using AnimalCentre.Models.Animals.Contracts;
-using AnimalCentre.Models.Procedures.Contracts;
+﻿using AnimalCentre.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +8,11 @@ namespace AnimalCentre.Models.Procedures
 {
     public abstract class Procedure : IProcedure
     {
-        public ICollection<IAnimal> ProcedureHistory { get; }
+        protected IList<IAnimal> procedureHistory;
 
-        public Procedure()
+        protected Procedure()
         {
-            this.ProcedureHistory = new List<IAnimal>();
+            this.procedureHistory = new List<IAnimal>();
         }
 
         public abstract void DoService(IAnimal animal, int procedureTime);
@@ -25,7 +23,7 @@ namespace AnimalCentre.Models.Procedures
 
             sb.AppendLine(this.GetType().Name);
 
-            string[] animalsInfo = ProcedureHistory
+            string[] animalsInfo = procedureHistory
                 .OrderBy(a => a.Name)
                 .Select(a => a.ToString())
                 .ToArray();

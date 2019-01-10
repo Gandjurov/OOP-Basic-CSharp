@@ -1,8 +1,5 @@
-﻿using AnimalCentre.Models.Animals.Contracts;
-using AnimalCentre.Models.Procedures.Contracts;
+﻿using AnimalCentre.Models.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AnimalCentre.Models.Procedures
 {
@@ -20,7 +17,7 @@ namespace AnimalCentre.Models.Procedures
 
             animal.Happiness -= RemoveHappiness;
             animal.IsChipped = true;
-            base.ProcedureHistory.Add(animal);
+            base.procedureHistory.Add(animal);
         }
     }
 }

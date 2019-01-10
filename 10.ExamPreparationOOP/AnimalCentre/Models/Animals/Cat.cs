@@ -1,7 +1,4 @@
-﻿using AnimalCentre.Models.Animals.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AnimalCentre.Models.Contracts;
 
 namespace AnimalCentre.Models.Animals
 {

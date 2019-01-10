@@ -1,8 +1,4 @@
-﻿using AnimalCentre.Models.Animals.Contracts;
-using AnimalCentre.Models.Procedures.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AnimalCentre.Models.Contracts;
 
 namespace AnimalCentre.Models.Procedures
 {
@@ -15,7 +11,7 @@ namespace AnimalCentre.Models.Procedures
             base.CheckTime(procedureTime, animal);
             animal.Energy -= RemoveEnergy;
             animal.IsVaccinated = true;
-            base.ProcedureHistory.Add(animal);
+            base.procedureHistory.Add(animal);
         }
     }
 }
