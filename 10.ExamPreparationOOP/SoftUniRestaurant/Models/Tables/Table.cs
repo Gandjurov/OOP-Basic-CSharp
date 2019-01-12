@@ -111,9 +111,9 @@ namespace SoftUniRestaurant.Models.Tables
 
         public void Reserve(int numberOfPeople)
         {
-            if (this.IsReserved)
+            if (this.numberOfPeople <= this.Capacity)
             {
-                this.TableNumber = numberOfPeople;
+                this.IsReserved = true;
             }
             
         }

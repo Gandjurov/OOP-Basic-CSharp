@@ -35,7 +35,7 @@ namespace SoftUniRestaurant.Core
                         case "AddFood":
                             string type = args[0];
                             string name = args[1];
-                            int price = int.Parse(args[2]);
+                            decimal price = decimal.Parse(args[2]);
 
                             result = restaurantController.AddFood(type, name, price);
                             break;
@@ -75,10 +75,10 @@ namespace SoftUniRestaurant.Core
 
                     Console.WriteLine(result);
                 }
-                catch (InvalidOperationException ex)
-                {
-                    Console.WriteLine($"Invalid Operation: " + ex.Message);
-                }
+                //catch (InvalidOperationException ex)
+                //{
+                //    Console.WriteLine($"Invalid Operation: " + ex.Message);
+                //}
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine($"Parameter Error: " + ex.Message);

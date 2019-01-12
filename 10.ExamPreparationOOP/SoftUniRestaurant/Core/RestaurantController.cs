@@ -13,18 +13,12 @@
 
     public class RestaurantController
     {
-        private Table table;
-        private Drink drink;
-        private Food food;
         private List<IFood> foods;
         private List<ITable> tables;
         private List<IDrink> drinks;
 
         public RestaurantController()
         {
-            this.food = food;
-            this.drink = drink;
-            this.table = table;
             this.foods = new List<IFood>();
             this.drinks = new List<IDrink>();
             this.tables = new List<ITable>();
@@ -93,10 +87,10 @@
 
         public string ReserveTable(int numberOfPeople)
         {
-            if (numberOfPeople <= table.Capacity)
+            if (tables.FirstOrDefault().Capacity >= numberOfPeople)
             {
-                return $"Table {table.TableNumber} has been reserved for {numberOfPeople} people";
 
+                return $"Table {table.TableNumber} has been reserved for {numberOfPeople} people";
             }
             else
             {
