@@ -14,7 +14,7 @@ namespace SoftUniRestaurant.Core
             this.restaurantController = new RestaurantController();
         }
 
-
+        
         public void Run()
         {
             string input = Console.ReadLine();
@@ -39,11 +39,12 @@ namespace SoftUniRestaurant.Core
 
                             result = restaurantController.AddFood(type, name, price);
                             break;
+
                         case "AddDrink":
                             type = args[0];
                             name = args[1];
                             var servingSize = int.Parse(args[2]);
-                            var brand = args[2];
+                            var brand = args[3];
 
                             result = restaurantController.AddDrink(type, name, servingSize, brand);
                             break;

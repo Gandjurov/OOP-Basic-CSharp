@@ -59,47 +59,56 @@
 
         public string ReserveTable(int numberOfPeople)
         {
-            if (this.currentTable.IsReserved == false)
+            var checkTable = tables.Where(x => x.Capacity >= numberOfPeople).FirstOrDefault(x => x.IsReserved == false);
+
+            if (checkTable.IsReserved == false) 
             {
-                this.currentTable.Reserve(numberOfPeople);
-                return $"Table {this.currentTable.TableNumber} has been reserved for {numberOfPeople} people";
+                checkTable.Reserve(numberOfPeople);
+                tables[checkTable.TableNumber - 1].IsReserved = true;
+                var reservedTable = checkTable.TableNumber;
+                return $"Table {reservedTable} has been reserved for {numberOfPeople} people";
             }
             else
             {
                 return $"No available table for {numberOfPeople} people";
+
             }
         }
 
         public string OrderFood(int tableNumber, string foodName)
         {
-            if (!(this.currentTable.TableNumber == tableNumber))
+            var table = tables[tableNumber];
+
+            if (!tables.Any(x => x.TableNumber == tableNumber)) 
             {
                 return $"Could not find table with {tableNumber}";
             }
-            else if (currentFood.Name != foodName)
+            else if (!foods.Any(x => x.Name == foodName))
             {
                 return $"No {foodName} in the menu";
             }
             else
             {
-                this.currentTable.OrderFood(this.currentFood);
+                table.OrderFood(this.currentFood);
                 return $"Table {tableNumber} ordered {foodName}";
             }
         }
 
         public string OrderDrink(int tableNumber, string drinkName, string drinkBrand)
         {
-            if (!(this.currentTable.TableNumber == tableNumber))
+            var table = tables[tableNumber];
+
+            if (!tables.Any(x => x.TableNumber == tableNumber))
             {
                 return $"Could not find table with {tableNumber}";
             }
-            else if (currentDrink.Name == drinkName && currentDrink.Brand == drinkBrand)
+            else if (currentDrink.Name != drinkName || currentDrink.Brand != drinkBrand)
             {
                 return $"There is no {drinkName} {drinkBrand} available";
             }
             else
             {
-                this.currentTable.OrderDrink(this.currentDrink);
+                table.OrderDrink(this.currentDrink);
                 return $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
             }
         }

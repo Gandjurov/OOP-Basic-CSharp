@@ -73,7 +73,7 @@ namespace SoftUniRestaurant.Models.Tables
             }
             set
             {
-                if (value > 0)
+                if (value < 0)
                 {
                     throw new ArgumentException($"Cannot place zero or less people!");
                 }
@@ -111,10 +111,8 @@ namespace SoftUniRestaurant.Models.Tables
 
         public void Reserve(int numberOfPeople)
         {
-            if (this.IsReserved == false)
-            {
-                this.NumberOfPeople = numberOfPeople;
-            }
+            this.NumberOfPeople = numberOfPeople;
+            //this.IsReserved = true;
         }
 
         public void OrderFood(IFood food)
