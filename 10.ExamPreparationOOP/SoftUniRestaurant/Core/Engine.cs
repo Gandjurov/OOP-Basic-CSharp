@@ -63,25 +63,41 @@ namespace SoftUniRestaurant.Core
                             break;
 
                         case "OrderFood":
-                            type = args[0];
                             tableNumber = int.Parse(args[0]);
                             string foodName = args[1];
 
                             result = restaurantController.OrderFood(tableNumber, foodName);
                             break;
-                        default:
+
+                        case "OrderDrink":
+                            tableNumber = int.Parse(args[0]);
+                            string drinkName = args[1];
+                            string drinkBrand = args[2];
+
+                            result = restaurantController.OrderDrink(tableNumber, drinkName, drinkBrand);
+                            break;
+                            
+                        case "LeaveTable":
+                            tableNumber = int.Parse(args[0]);
+
+                            result = restaurantController.LeaveTable(tableNumber);
+                            break;
+
+                        case "GetFreeTablesInfo":
+                            restaurantController.GetFreeTablesInfo();
+                            break;
+                            
+                        case "GetOccupiedTablesInfo":
+                            restaurantController.GetOccupiedTablesInfo();
                             break;
                     }
 
                     Console.WriteLine(result);
                 }
-                //catch (InvalidOperationException ex)
-                //{
-                //    Console.WriteLine($"Invalid Operation: " + ex.Message);
-                //}
+
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine($"Parameter Error: " + ex.Message);
+                    Console.WriteLine(ex.Message);
                 }
 
                 input = Console.ReadLine();

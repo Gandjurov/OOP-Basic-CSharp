@@ -1,5 +1,6 @@
 ﻿namespace SoftUniRestaurant.Core
 {
+    using SoftUniRestaurant.Factories;
     using SoftUniRestaurant.Models.Drinks;
     using SoftUniRestaurant.Models.Drinks.Contracts;
     using SoftUniRestaurant.Models.Foods;
@@ -16,81 +17,52 @@
         private List<IFood> foods;
         private List<ITable> tables;
         private List<IDrink> drinks;
+        private FoodFactory foodFactory;
+        private DrinkFactory drinkFactory;
+        private TableFactory tableFactory;
+
+        private Table currentTable;
+        private Food currentFood;
+        private Drink currentDrink;
+        private decimal bill;
 
         public RestaurantController()
         {
             this.foods = new List<IFood>();
             this.drinks = new List<IDrink>();
             this.tables = new List<ITable>();
+            this.foodFactory = new FoodFactory();
+            this.drinkFactory = new DrinkFactory();
+            this.tableFactory = new TableFactory();
         }
 
         public string AddFood(string type, string name, decimal price)
         {
-            if (type == "Dessert")
-            {
-                food = new Dessert(name, price);
-            }
-            else if (type == "MainCourse")
-            {
-                food = new MainCourse(name, price);
-            }
-            else if (type == "Salad")
-            {
-                food = new Salad(name, price);
-            }
-            else if (type == "Soup")
-            {
-                food = new Soup(name, price);
-            }
-            
-            foods.Add(food);
+            this.currentFood = this.foodFactory.CreateFood(type, name, price);
+            foods.Add(this.currentFood);
             return $"Added {name} ({type}) with price {price:f2} to the pool";
         }
 
         public string AddDrink(string type, string name, int servingSize, string brand)
         {
-            if (type == "Alcohol")
-            {
-                drink = new Alcohol(name, servingSize, brand);
-            }
-            else if (type == "FuzzyDrink")
-            {
-                drink = new FuzzyDrink(name, servingSize, brand);
-            }
-            else if (type == "Juice")
-            {
-                drink = new Juice(name, servingSize, brand);
-            }
-            else if (type == "Water")
-            {
-                drink = new Water(name, servingSize, brand);
-            }
-
-            drinks.Add(drink);
-            return $"Added {name} ({brand}) to the drink pool";
+            this.currentDrink = this.drinkFactory.CreateDrink(type, name, servingSize, brand);
+            drinks.Add(this.currentDrink);
+            return $"Added {name} ({this.currentDrink.Brand}) to the drink pool";
         }
 
         public string AddTable(string type, int tableNumber, int capacity)
         {
-            if (type == "InsideTable")
-            {
-                table = new InsideTable(tableNumber, capacity);
-            }
-            else if (type == "OutsideTable")
-            {
-                table = new OutsideTable(tableNumber, capacity);
-            }
-
-            tables.Add(table);
+            this.currentTable = this.tableFactory.CreateTable(type, tableNumber, capacity);
+            tables.Add(this.currentTable);
             return $"Added table number {tableNumber} in the restaurant";
         }
 
         public string ReserveTable(int numberOfPeople)
         {
-            if (tables.FirstOrDefault().Capacity >= numberOfPeople)
+            if (this.currentTable.IsReserved == false)
             {
-
-                return $"Table {table.TableNumber} has been reserved for {numberOfPeople} people";
+                this.currentTable.Reserve(numberOfPeople);
+                return $"Table {this.currentTable.TableNumber} has been reserved for {numberOfPeople} people";
             }
             else
             {
@@ -100,44 +72,47 @@
 
         public string OrderFood(int tableNumber, string foodName)
         {
-            if (!(table.TableNumber == tableNumber))
+            if (!(this.currentTable.TableNumber == tableNumber))
             {
                 return $"Could not find table with {tableNumber}";
             }
-            else if (food.Name == foodName)
+            else if (currentFood.Name != foodName)
             {
                 return $"No {foodName} in the menu";
             }
             else
             {
+                this.currentTable.OrderFood(this.currentFood);
                 return $"Table {tableNumber} ordered {foodName}";
             }
         }
 
         public string OrderDrink(int tableNumber, string drinkName, string drinkBrand)
         {
-            if (!(table.TableNumber == tableNumber))
+            if (!(this.currentTable.TableNumber == tableNumber))
             {
                 return $"Could not find table with {tableNumber}";
             }
-            else if (drink.Name == drinkName && drink.Brand == drinkBrand)
+            else if (currentDrink.Name == drinkName && currentDrink.Brand == drinkBrand)
             {
                 return $"There is no {drinkName} {drinkBrand} available";
             }
             else
             {
+                this.currentTable.OrderDrink(this.currentDrink);
                 return $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
             }
         }
 
         public string LeaveTable(int tableNumber)
         {
-            if (tableNumber == table.TableNumber)
+            if (this.currentTable.TableNumber == tableNumber)
             {
-                var bill = table.GetBill();
-                table.Clear();
+                bill = this.currentTable.GetBill();
+                this.currentTable.Clear();
             }
-            return $"Table: {tableNumber}" + Environment.NewLine + "Bill: {bill:F2}";
+
+            return $"Table: {tableNumber}" + Environment.NewLine + $"Bill: {this.bill:F2}";
         }
 
         public string GetFreeTablesInfo()

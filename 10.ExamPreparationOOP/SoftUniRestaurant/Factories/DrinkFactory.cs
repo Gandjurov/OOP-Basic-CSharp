@@ -7,7 +7,7 @@ namespace SoftUniRestaurant.Factories
 {
     public class DrinkFactory
     {
-        public Drink CreateDrink(string type, string name, int servingSize, decimal price, string brand)
+        public Drink CreateDrink(string type, string name, int servingSize, string brand)
         {
             switch (type)
             {

@@ -7,13 +7,13 @@ namespace SoftUniRestaurant.Factories
 {
     public class TableFactory
     {
-        public Table Createfood(string type, int tableNumber, int capacity, decimal pricePerPerson)
+        public Table CreateTable(string type, int tableNumber, int capacity)
         {
             switch (type)
             {
-                case "InsideTable":
+                case "Inside":
                     return new InsideTable(tableNumber, capacity);
-                case "OutsideTable":
+                case "Outside":
                     return new OutsideTable(tableNumber, capacity);
                 default:
                     throw new ArgumentException($"Invalid table type: \"{type}\"!");
