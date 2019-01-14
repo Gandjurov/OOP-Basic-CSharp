@@ -126,26 +126,30 @@
 
         public string GetFreeTablesInfo()
         {
-            string resultInfo = string.Empty;
+            var freeTables = tables.Where(x => x.IsReserved == false).ToList();
+            StringBuilder sb = new StringBuilder();
 
-            foreach (var table in tables.Where(x => !x.IsReserved))
+
+            foreach (var table in freeTables)
             {
-                resultInfo = table.GetFreeTableInfo();
+                sb.AppendLine(table.GetFreeTableInfo());
             }
 
-            return resultInfo;
+            return sb.ToString().TrimEnd();
         }
 
         public string GetOccupiedTablesInfo()
         {
-            string resultInfo = string.Empty;
+            var freeTables = tables.Where(x => x.IsReserved == true).ToList();
+            StringBuilder sb = new StringBuilder();
 
-            foreach (var table in tables.Where(x => x.IsReserved))
+
+            foreach (var table in freeTables)
             {
-                resultInfo = table.GetOccupiedTableInfo();
+                sb.AppendLine(table.GetOccupiedTableInfo());
             }
 
-            return resultInfo;
+            return sb.ToString().TrimEnd();
         }
 
         public string GetSummary()

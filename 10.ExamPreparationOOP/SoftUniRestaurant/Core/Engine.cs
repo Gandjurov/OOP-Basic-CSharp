@@ -85,11 +85,11 @@ namespace SoftUniRestaurant.Core
                             break;
 
                         case "GetFreeTablesInfo":
-                            restaurantController.GetFreeTablesInfo();
+                            result = restaurantController.GetFreeTablesInfo();
                             break;
                             
                         case "GetOccupiedTablesInfo":
-                            restaurantController.GetOccupiedTablesInfo();
+                            result = restaurantController.GetOccupiedTablesInfo();
                             break;
                     }
 
