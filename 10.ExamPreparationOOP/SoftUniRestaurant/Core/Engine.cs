@@ -102,7 +102,9 @@ namespace SoftUniRestaurant.Core
                 }
 
                 input = Console.ReadLine();
+
             }
+            Console.WriteLine(this.restaurantController.GetSummary());
         }
     }
 }

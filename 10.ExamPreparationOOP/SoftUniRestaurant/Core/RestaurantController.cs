@@ -25,6 +25,7 @@
         private Food currentFood;
         private Drink currentDrink;
         private decimal bill;
+        private decimal totalIncome = 0.0m;
 
         public RestaurantController()
         {
@@ -59,9 +60,9 @@
 
         public string ReserveTable(int numberOfPeople)
         {
-            var checkTable = tables.Where(x => x.Capacity >= numberOfPeople).FirstOrDefault(x => x.IsReserved == false);
-
-            if (checkTable.IsReserved == false) 
+            //var checkTable = tables.Where(x => x.Capacity >= numberOfPeople).FirstOrDefault(x => x.IsReserved == false);
+            var checkTable = tables.FirstOrDefault(x => x.IsReserved == false);
+            if (checkTable.Capacity >= numberOfPeople) 
             {
                 checkTable.Reserve(numberOfPeople);
                 tables[checkTable.TableNumber - 1].IsReserved = true;
@@ -77,7 +78,7 @@
 
         public string OrderFood(int tableNumber, string foodName)
         {
-            var table = tables[tableNumber];
+            var table = tables[tableNumber - 1];
 
             if (!tables.Any(x => x.TableNumber == tableNumber)) 
             {
@@ -89,14 +90,18 @@
             }
             else
             {
-                table.OrderFood(this.currentFood);
-                return $"Table {tableNumber} ordered {foodName}";
+                var currentFood = foods.FirstOrDefault(x => x.Name == foodName);
+                table.OrderFood(currentFood);
+                string result =  $"Table {tableNumber} ordered {foodName}";
+                return result;
             }
         }
 
+
+
         public string OrderDrink(int tableNumber, string drinkName, string drinkBrand)
         {
-            var table = tables[tableNumber];
+            var table = tables[tableNumber - 1];
 
             if (!tables.Any(x => x.TableNumber == tableNumber))
             {
@@ -108,18 +113,19 @@
             }
             else
             {
-                table.OrderDrink(this.currentDrink);
-                return $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
+                var currentDrink = drinks.FirstOrDefault(x => x.Name == drinkName);
+                table.OrderDrink(currentDrink);
+                string result = $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
+                return result;
             }
         }
 
         public string LeaveTable(int tableNumber)
         {
-            if (this.currentTable.TableNumber == tableNumber)
-            {
-                bill = this.currentTable.GetBill();
-                this.currentTable.Clear();
-            }
+            var table = tables.FirstOrDefault(x => x.TableNumber == tableNumber);
+            this.bill = table.GetBill() + (table.PricePerPerson * table.NumberOfPeople);
+            totalIncome += this.bill;
+            table.Clear();
 
             return $"Table: {tableNumber}" + Environment.NewLine + $"Bill: {this.bill:F2}";
         }
@@ -140,11 +146,11 @@
 
         public string GetOccupiedTablesInfo()
         {
-            var freeTables = tables.Where(x => x.IsReserved == true).ToList();
+            var occupiedTables = tables.Where(x => x.IsReserved == true).ToList();
             StringBuilder sb = new StringBuilder();
 
 
-            foreach (var table in freeTables)
+            foreach (var table in occupiedTables)
             {
                 sb.AppendLine(table.GetOccupiedTableInfo());
             }
@@ -154,14 +160,7 @@
 
         public string GetSummary()
         {
-            decimal totalIncome = 0.0m;
-
-            foreach (var table in tables.Where(x => x.IsReserved))
-            {
-                totalIncome += table.GetBill();
-            }
-
-            string result = $"Total income: {totalIncome:F2}lv";
+            string result = $"Total income: {this.totalIncome:F2}lv";
             return result;
         }
 

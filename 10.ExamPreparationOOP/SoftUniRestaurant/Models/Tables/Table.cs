@@ -105,14 +105,12 @@ namespace SoftUniRestaurant.Models.Tables
                 }
             }
         }
-
-        //Not Sure does works
-        public decimal Price => this.PricePerPerson;
+        
+        public decimal Price { get; set; }
 
         public void Reserve(int numberOfPeople)
         {
             this.NumberOfPeople = numberOfPeople;
-            //this.IsReserved = true;
         }
 
         public void OrderFood(IFood food)
@@ -129,7 +127,6 @@ namespace SoftUniRestaurant.Models.Tables
         {
             decimal drinkBill = DrinkOrders.Sum(x => x.Price);
             decimal foodBill = FoodOrders.Sum(x => x.Price);
-
             decimal totalBill = drinkBill + foodBill;
 
             return totalBill;
@@ -137,10 +134,10 @@ namespace SoftUniRestaurant.Models.Tables
 
         public void Clear()
         {
-            GetBill();
             FoodOrders.Clear();
             DrinkOrders.Clear();
-            this.Capacity = 0;
+            this.NumberOfPeople = 0;
+            IsReserved = false;
         }
 
         public string GetFreeTableInfo()
@@ -181,22 +178,31 @@ namespace SoftUniRestaurant.Models.Tables
 
             sb.AppendLine($"Number of people: {this.NumberOfPeople}");
 
-            if (FoodOrders == null)
+            if (FoodOrders.Count == 0)
             {
                 sb.AppendLine($"Food orders: None");
             }
             else
             {
                 sb.AppendLine($"Food orders: {FoodOrders.Count}");
+
+                foreach (var orders in FoodOrders)
+                {
+                    sb.AppendLine(orders.ToString());
+                }
             }
 
-            if (DrinkOrders == null)
+            if (DrinkOrders.Count == 0)
             {
                 sb.AppendLine($"Drink orders: None");
             }
             else
             {
                 sb.AppendLine($"Drink orders: {DrinkOrders.Count}");
+                foreach (var orders in DrinkOrders)
+                {
+                    sb.AppendLine(orders.ToString());
+                }
             }
 
             return sb.ToString().TrimEnd();
