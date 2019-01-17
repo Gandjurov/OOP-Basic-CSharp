@@ -19,6 +19,7 @@ namespace SoftUniRestaurant.Models.Tables
         private int numberOfPeople;
         private decimal pricePerPerson;
         private bool isReserved;
+        private decimal price;
 
         protected Table(int tableNumber, int capacity, decimal pricePerPerson)
         {
@@ -34,19 +35,19 @@ namespace SoftUniRestaurant.Models.Tables
         public List<IFood> FoodOrders
         {
             get { return foodOrders; }
-            private set { foodOrders = value; }
+            set { foodOrders = value; }
         }
 
         public List<IDrink> DrinkOrders
         {
             get { return drinkOrders; }
-            private set { drinkOrders = value; }
+            set { drinkOrders = value; }
         }
 
         public int TableNumber
         {
             get { return tableNumber; }
-            set { tableNumber = value; }
+            private set { tableNumber = value; }
         }
 
         public int Capacity
@@ -55,7 +56,7 @@ namespace SoftUniRestaurant.Models.Tables
             {
                 return capacity;
             }
-            set
+            private set
             {
                 if (value < 0)
                 {
@@ -87,26 +88,12 @@ namespace SoftUniRestaurant.Models.Tables
             set { pricePerPerson = value; }
         }
 
-        public bool IsReserved
+        public bool IsReserved { get; set; }
+
+        public decimal Price
         {
-            get
-            {
-                return isReserved;
-            }
-            set
-            {
-                if (this.NumberOfPeople <= this.Capacity)
-                {
-                    isReserved = true;
-                }
-                else
-                {
-                    isReserved = false;
-                }
-            }
+            get { return NumberOfPeople * PricePerPerson; }
         }
-        
-        public decimal Price { get; set; }
 
         public void Reserve(int numberOfPeople)
         {
@@ -136,7 +123,7 @@ namespace SoftUniRestaurant.Models.Tables
         {
             FoodOrders.Clear();
             DrinkOrders.Clear();
-            this.NumberOfPeople = 0;
+            //this.NumberOfPeople = 0;
             IsReserved = false;
         }
 

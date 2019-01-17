@@ -13,7 +13,6 @@ namespace SoftUniRestaurant.Core
         {
             this.restaurantController = new RestaurantController();
         }
-
         
         public void Run()
         {

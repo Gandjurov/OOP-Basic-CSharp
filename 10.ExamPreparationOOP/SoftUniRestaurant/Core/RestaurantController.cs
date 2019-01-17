@@ -48,7 +48,7 @@
         {
             this.currentDrink = this.drinkFactory.CreateDrink(type, name, servingSize, brand);
             drinks.Add(this.currentDrink);
-            return $"Added {name} ({this.currentDrink.Brand}) to the drink pool";
+            return $"Added {name} ({brand}) to the drink pool";
         }
 
         public string AddTable(string type, int tableNumber, int capacity)
@@ -60,64 +60,113 @@
 
         public string ReserveTable(int numberOfPeople)
         {
-            //var checkTable = tables.Where(x => x.Capacity >= numberOfPeople).FirstOrDefault(x => x.IsReserved == false);
-            var checkTable = tables.FirstOrDefault(x => x.IsReserved == false);
-            if (checkTable.Capacity >= numberOfPeople) 
+            foreach (var table in tables)
             {
-                checkTable.Reserve(numberOfPeople);
-                tables[checkTable.TableNumber - 1].IsReserved = true;
-                var reservedTable = checkTable.TableNumber;
-                return $"Table {reservedTable} has been reserved for {numberOfPeople} people";
+                if (!table.IsReserved && table.Capacity >= numberOfPeople)
+                {
+                    table.IsReserved = true;
+                    table.NumberOfPeople = numberOfPeople;
+                    return $"Table {table.TableNumber} has been reserved for {numberOfPeople} people";
+                }
             }
-            else
-            {
-                return $"No available table for {numberOfPeople} people";
 
-            }
+            return $"No available table for {numberOfPeople} people";
+
+            //var checkTable = tables.Where(x => x.Capacity >= numberOfPeople).FirstOrDefault(x => x.IsReserved == false);
+
+            //var checkTable = tables.FirstOrDefault(x => x.IsReserved == false);
+            //if (checkTable.Capacity >= numberOfPeople) 
+            //{
+            //    checkTable.Reserve(numberOfPeople);
+            //    tables[checkTable.TableNumber - 1].IsReserved = true;
+            //    var reservedTable = checkTable.TableNumber;
+            //    return $"Table {reservedTable} has been reserved for {numberOfPeople} people";
+            //}
+            //else
+            //{
+            //    return $"No available table for {numberOfPeople} people";
+
+            //}
         }
 
         public string OrderFood(int tableNumber, string foodName)
         {
-            var table = tables[tableNumber - 1];
 
-            if (!tables.Any(x => x.TableNumber == tableNumber)) 
+            foreach (var table in tables)
             {
-                return $"Could not find table with {tableNumber}";
+                if (tableNumber == table.TableNumber)
+                {
+                    foreach (var food in foods)
+                    {
+                        if (food.Name == foodName)
+                        {
+                            table.OrderFood(food);
+                            return $"Table {tableNumber} ordered {foodName}";
+                        }
+                    }
+
+                    return $"No {foodName} in the menu";
+                }
             }
-            else if (!foods.Any(x => x.Name == foodName))
-            {
-                return $"No {foodName} in the menu";
-            }
-            else
-            {
-                var currentFood = foods.FirstOrDefault(x => x.Name == foodName);
-                table.OrderFood(currentFood);
-                string result =  $"Table {tableNumber} ordered {foodName}";
-                return result;
-            }
+
+            return $"Could not find table with {tableNumber}";
+
+            //var table = tables[tableNumber - 1];
+
+            //if (!tables.Any(x => x.TableNumber == tableNumber)) 
+            //{
+            //    return $"Could not find table with {tableNumber}";
+            //}
+            //else if (!foods.Any(x => x.Name == foodName))
+            //{
+            //    return $"No {foodName} in the menu";
+            //}
+            //else
+            //{
+            //    var currentFood = foods.FirstOrDefault(x => x.Name == foodName);
+            //    table.OrderFood(currentFood);
+            //    string result =  $"Table {tableNumber} ordered {foodName}";
+            //    return result;
+            //}
         }
-
-
-
+        
         public string OrderDrink(int tableNumber, string drinkName, string drinkBrand)
         {
-            var table = tables[tableNumber - 1];
+            foreach (var table in tables)
+            {
+                if (tableNumber == table.TableNumber)
+                {
+                    foreach (var drink in drinks)
+                    {
+                        if (drink.Name == drinkName)
+                        {
+                            table.OrderDrink(drink);
+                            return $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
+                        }
+                    }
 
-            if (!tables.Any(x => x.TableNumber == tableNumber))
-            {
-                return $"Could not find table with {tableNumber}";
+                    return $"There is no {drinkName} {drinkBrand} available";
+                }
             }
-            else if (currentDrink.Name != drinkName || currentDrink.Brand != drinkBrand)
-            {
-                return $"There is no {drinkName} {drinkBrand} available";
-            }
-            else
-            {
-                var currentDrink = drinks.FirstOrDefault(x => x.Name == drinkName);
-                table.OrderDrink(currentDrink);
-                string result = $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
-                return result;
-            }
+            return $"Could not find table with {tableNumber}";
+
+            //var table = tables[tableNumber - 1];
+
+            //if (!tables.Any(x => x.TableNumber == tableNumber))
+            //{
+            //    return $"Could not find table with {tableNumber}";
+            //}
+            //else if (currentDrink.Name != drinkName || currentDrink.Brand != drinkBrand)
+            //{
+            //    return $"There is no {drinkName} {drinkBrand} available";
+            //}
+            //else
+            //{
+            //    var currentDrink = drinks.FirstOrDefault(x => x.Name == drinkName);
+            //    table.OrderDrink(currentDrink);
+            //    string result = $"Table {tableNumber} ordered {drinkName} {drinkBrand}";
+            //    return result;
+            //}
         }
 
         public string LeaveTable(int tableNumber)
@@ -134,7 +183,6 @@
         {
             var freeTables = tables.Where(x => x.IsReserved == false).ToList();
             StringBuilder sb = new StringBuilder();
-
 
             foreach (var table in freeTables)
             {

@@ -1,19 +1,26 @@
 ﻿using SoftUniRestaurant.Models.Drinks.Contracts;
 using SoftUniRestaurant.Models.Foods.Contracts;
+using System.Collections.Generic;
 
 namespace SoftUniRestaurant.Models.Tables.Contracts
 {
     public interface ITable
     {
-        int TableNumber { get; set; }
+        int TableNumber { get; }
 
-        int Capacity { get; set; }
+        int Capacity { get; }
 
         int NumberOfPeople { get; set; }
 
         decimal PricePerPerson { get; set; }
 
+        decimal Price { get; }
+
         bool IsReserved { get; set; }
+
+        List<IFood> FoodOrders { get; set; }
+
+        List<IDrink> DrinkOrders { get; set; }
 
         void Reserve(int numberOfPeople);
 
