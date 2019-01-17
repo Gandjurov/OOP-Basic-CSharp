@@ -2,12 +2,12 @@
 {
     public interface IDrink
     {
-        string Name { get; set; }
+        string Name { get; }
 
-        int ServingSize { get; set; }
+        int ServingSize { get; }
 
-        decimal Price { get; set; }
+        decimal Price { get; }
 
-        string Brand { get; set; }
+        string Brand { get; }
     }
 }

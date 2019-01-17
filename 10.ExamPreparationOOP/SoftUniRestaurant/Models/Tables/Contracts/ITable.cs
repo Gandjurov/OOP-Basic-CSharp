@@ -12,7 +12,7 @@ namespace SoftUniRestaurant.Models.Tables.Contracts
 
         int NumberOfPeople { get; set; }
 
-        decimal PricePerPerson { get; set; }
+        decimal PricePerPerson { get; }
 
         decimal Price { get; }
 

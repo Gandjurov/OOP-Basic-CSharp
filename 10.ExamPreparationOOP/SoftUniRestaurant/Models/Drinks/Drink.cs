@@ -26,7 +26,7 @@ namespace SoftUniRestaurant.Models.Drinks
             {
                 return name;
             }
-            set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -42,7 +42,7 @@ namespace SoftUniRestaurant.Models.Drinks
             {
                 return this.servingSize;
             }
-            set
+           private set
             {
                 if (value <= 0)
                 {
@@ -58,7 +58,7 @@ namespace SoftUniRestaurant.Models.Drinks
             {
                 return price;
             }
-            set
+            private set
             {
                 if (value <= 0)
                 {
@@ -74,7 +74,7 @@ namespace SoftUniRestaurant.Models.Drinks
             {
                 return brand;
             }
-            set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {

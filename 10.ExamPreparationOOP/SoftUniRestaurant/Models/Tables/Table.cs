@@ -85,7 +85,7 @@ namespace SoftUniRestaurant.Models.Tables
         public decimal PricePerPerson
         {
             get { return pricePerPerson; }
-            set { pricePerPerson = value; }
+            private set { pricePerPerson = value; }
         }
 
         public bool IsReserved { get; set; }
