@@ -6,7 +6,7 @@
 
         int Happiness { get; set; }
 
-        int Energy { get; }
+        int Energy { get; set; }
 
         int ProcedureTime { get; }
 

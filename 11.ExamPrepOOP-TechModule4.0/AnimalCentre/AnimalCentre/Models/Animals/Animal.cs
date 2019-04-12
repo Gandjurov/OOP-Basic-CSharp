@@ -46,7 +46,7 @@ namespace AnimalCentre.Models.Animals
             {
                 return energy;
             }
-            private set
+            set
             {
                 if (value < 0 || value > 100)
                 {
