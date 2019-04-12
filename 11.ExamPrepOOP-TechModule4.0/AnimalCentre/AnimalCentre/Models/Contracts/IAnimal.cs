@@ -8,7 +8,7 @@
 
         int Energy { get; set; }
 
-        int ProcedureTime { get; }
+        int ProcedureTime { get; set; }
 
         string Owner { get; }
 
@@ -16,6 +16,6 @@
 
         bool IsChipped { get; set; }
 
-        bool IsVaccinated { get; }
+        bool IsVaccinated { get; set; }
     }
 }

@@ -30,7 +30,15 @@ namespace AnimalCentre.Models.Procedures
             return result;
         }
 
-        public abstract void DoService(IAnimal animal, int procedureTime);
+        public virtual void DoService(IAnimal animal, int procedureTime)
+        {
+            if (procedureTime > animal.ProcedureTime)
+            {
+                throw new ArgumentException("Animal doesn't have enough procedure time");
+            }
+
+            animal.ProcedureTime -= procedureTime;
+        }
 
 
     }

@@ -9,6 +9,8 @@ namespace AnimalCentre.Models.Procedures
     {
         public override void DoService(IAnimal animal, int procedureTime)
         {
+            base.DoService(animal, procedureTime);
+
             animal.Happiness -= 7;
         }
     }
