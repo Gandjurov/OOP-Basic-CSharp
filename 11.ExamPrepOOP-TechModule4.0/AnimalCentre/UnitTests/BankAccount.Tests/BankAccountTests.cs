@@ -57,5 +57,21 @@ namespace BankAccount.Tests
             var bankAccount = new BankAccount(name, balance);
             Assert.Throws<InvalidOperationException>(() => bankAccount.Deposit(amount));
         }
+
+        [Test]
+        public void Deposit_ShouldIncreaseBalance_ValidAmount()
+        {
+            string name = "Gosho";
+            decimal balance = 340.34M;
+
+            var bankAccount = new BankAccount(name, balance);
+
+            bankAccount.Deposit(120);
+
+            var expected = 460.34m;
+            var actual = bankAccount.Balance;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
