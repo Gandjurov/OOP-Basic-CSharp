@@ -69,12 +69,22 @@ namespace AnimalCentre.Core
 
         public string DentalCare(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var dentalCate = new DentalCare();
+
+            dentalCate.DoService(animal, procedureTime);
+
+            return $"{animal.Name} had dental care procedure";
         }
 
         public string NailTrim(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var nailTrim = new NailTrim();
+
+            nailTrim.DoService(animal, procedureTime);
+
+            return $"{animal.Name} had nail trim procedure";
         }
 
         public string Adopt(string animalName, string owner)
