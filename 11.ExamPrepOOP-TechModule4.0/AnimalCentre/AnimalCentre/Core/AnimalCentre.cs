@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using AnimalCentre.Models;
+using AnimalCentre.Models.Procedures;
 
 namespace AnimalCentre.Core
 {
@@ -29,12 +30,21 @@ namespace AnimalCentre.Core
 
         public string Chip(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var chip = new Chip();
+            chip.DoService(animal, procedureTime);
+
+            return $"{animal.Name} had chip procedure";
         }
 
         public string Vaccinate(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var vaccinate = new Vaccinate();
+
+            vaccinate.DoService(animal, procedureTime);
+
+            return $"{animal.Name} had vaccination procedure";
         }
 
         public string Fitness(string name, int procedureTime)
