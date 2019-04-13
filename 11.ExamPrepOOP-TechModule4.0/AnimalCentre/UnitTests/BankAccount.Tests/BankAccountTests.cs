@@ -10,8 +10,7 @@ namespace BankAccount.Tests
         {
 
         }
-
-        //ctor set property values
+        
         //invalid name minLen/maxLen
         //invalid balance
         //deposit invalid amount
@@ -32,6 +31,14 @@ namespace BankAccount.Tests
             Assert.AreEqual(name, bankAccount.Name);
             Assert.AreEqual(balance, bankAccount.Balance);
 
+        }
+
+        [Test]
+        [TestCase("1", 3450.34)]
+        [TestCase("StringWithLengthMoreThan25Symbols", 3450.34)]
+        public void Constructor_ShouldThrowArgumentException_InvalidNameLength(string name, decimal balance)
+        {
+            Assert.Throws<ArgumentException>(() => new BankAccount(name, balance));
         }
     }
 }
