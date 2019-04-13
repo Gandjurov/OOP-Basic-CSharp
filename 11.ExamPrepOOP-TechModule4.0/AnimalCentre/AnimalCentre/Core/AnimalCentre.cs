@@ -49,12 +49,22 @@ namespace AnimalCentre.Core
 
         public string Fitness(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var fitness = new Fitness();
+
+            fitness.DoService(animal, procedureTime);
+
+            return $"{animal.Name} had fitness procedure";
         }
 
         public string Play(string name, int procedureTime)
         {
-            throw new NotImplementedException();
+            var animal = this.hotel.Animals[name];
+            var play = new Play();
+
+            play.DoService(animal, procedureTime);
+
+            return $"{animal.Name} was playing for {procedureTime} hours";
         }
 
         public string DentalCare(string name, int procedureTime)
