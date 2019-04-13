@@ -11,7 +11,7 @@ namespace BankAccount.Tests
 
         }
         
-        //balance has increased
+
         //withdraw invalid amount 0
         //insufficient funds
         //balance has decreased
@@ -72,6 +72,18 @@ namespace BankAccount.Tests
             var actual = bankAccount.Balance;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Withdraw_ShouldThrowInvalidOperationException_InvalidBalance()
+        {
+            string name = "Gosho";
+            decimal balance = 340.34M;
+
+            var bankAccount = new BankAccount(name, balance);
+            var invalidAmount = -1;
+
+            Assert.Throws<InvalidOperationException>(() => bankAccount.Withdraw(invalidAmount));
         }
     }
 }
