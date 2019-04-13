@@ -11,7 +11,6 @@ namespace BankAccount.Tests
 
         }
         
-        //invalid name minLen/maxLen
         //invalid balance
         //deposit invalid amount
         //balance has increased
@@ -37,6 +36,14 @@ namespace BankAccount.Tests
         [TestCase("1", 3450.34)]
         [TestCase("StringWithLengthMoreThan25Symbols", 3450.34)]
         public void Constructor_ShouldThrowArgumentException_InvalidNameLength(string name, decimal balance)
+        {
+            Assert.Throws<ArgumentException>(() => new BankAccount(name, balance));
+        }
+
+        [Test]
+        [TestCase("Gosho", -1)]
+        [TestCase("Pesho", -5)]
+        public void Constructor_ShouldThrowArgumentException_InvalidBalance(string name, decimal balance)
         {
             Assert.Throws<ArgumentException>(() => new BankAccount(name, balance));
         }
