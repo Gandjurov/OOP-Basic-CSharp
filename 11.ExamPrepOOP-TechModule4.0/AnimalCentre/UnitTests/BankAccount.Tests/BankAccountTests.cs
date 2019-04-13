@@ -11,8 +11,6 @@ namespace BankAccount.Tests
 
         }
         
-        //invalid balance
-        //deposit invalid amount
         //balance has increased
         //withdraw invalid amount 0
         //insufficient funds
@@ -46,6 +44,18 @@ namespace BankAccount.Tests
         public void Constructor_ShouldThrowArgumentException_InvalidBalance(string name, decimal balance)
         {
             Assert.Throws<ArgumentException>(() => new BankAccount(name, balance));
+        }
+
+        [Test]
+        [TestCase(-1)]
+        [TestCase(0)]
+        public void Deposit_ShouldThrowArgumentException_InvalidAmount(decimal amount)
+        {
+            string name = "Gosho";
+            decimal balance = 340.34M;
+
+            var bankAccount = new BankAccount(name, balance);
+            Assert.Throws<InvalidOperationException>(() => bankAccount.Deposit(amount));
         }
     }
 }
