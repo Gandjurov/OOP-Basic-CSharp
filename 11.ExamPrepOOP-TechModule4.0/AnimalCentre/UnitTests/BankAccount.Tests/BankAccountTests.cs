@@ -11,9 +11,6 @@ namespace BankAccount.Tests
 
         }
         
-
-        //withdraw invalid amount 0
-        //insufficient funds
         //balance has decreased
         //correct balance
 
@@ -82,6 +79,18 @@ namespace BankAccount.Tests
 
             var bankAccount = new BankAccount(name, balance);
             var invalidAmount = -1;
+
+            Assert.Throws<InvalidOperationException>(() => bankAccount.Withdraw(invalidAmount));
+        }
+
+        [Test]
+        public void Withdraw_ShouldThrowInvalidOperationException_InsufficientFunds()
+        {
+            string name = "Gosho";
+            decimal balance = 340.34M;
+
+            var bankAccount = new BankAccount(name, balance);
+            var invalidAmount = 500;
 
             Assert.Throws<InvalidOperationException>(() => bankAccount.Withdraw(invalidAmount));
         }
