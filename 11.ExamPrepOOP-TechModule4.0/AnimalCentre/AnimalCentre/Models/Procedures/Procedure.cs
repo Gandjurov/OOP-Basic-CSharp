@@ -22,7 +22,7 @@ namespace AnimalCentre.Models.Procedures
 
             foreach (var animal in ProcedureHistory)
             {
-                sb.AppendLine($"    - {animal.Name} - Happiness: {animal.Happiness} - Energy: {animal.Energy}");
+                sb.AppendLine(animal.ToString());
             }
 
             string result = sb.ToString().TrimEnd();
@@ -38,6 +38,8 @@ namespace AnimalCentre.Models.Procedures
             }
 
             animal.ProcedureTime -= procedureTime;
+
+            ProcedureHistory.Add(animal);
         }
 
 
