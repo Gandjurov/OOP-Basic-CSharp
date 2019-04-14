@@ -11,8 +11,7 @@ namespace BankAccount.Tests
 
         }
         
-        //balance has decreased
-        //correct balance
+
 
         [Test]
         public void Constructor_ShouldSetProperValues()
@@ -93,6 +92,23 @@ namespace BankAccount.Tests
             var invalidAmount = 500;
 
             Assert.Throws<InvalidOperationException>(() => bankAccount.Withdraw(invalidAmount));
+        }
+
+        [Test]
+        public void Withdraw_ShouldDecreaseBalanceCorrectly()
+        {
+            string name = "Gosho";
+            decimal balance = 340.34m;
+
+            var bankAccount = new BankAccount(name, balance);
+            var validAmount = 40.34m;
+
+            bankAccount.Withdraw(validAmount);
+
+            var expected = 300;
+            var actual = bankAccount.Balance;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
