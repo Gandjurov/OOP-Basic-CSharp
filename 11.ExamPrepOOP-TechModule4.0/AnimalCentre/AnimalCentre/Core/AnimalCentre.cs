@@ -6,10 +6,11 @@ using System.Text;
 using AnimalCentre.Models;
 using AnimalCentre.Models.Procedures;
 using System.Linq;
+using AnimalCentre.Core.Contracts;
 
 namespace AnimalCentre.Core
 {
-    public class AnimalCentre
+    public class AnimalCentre : IAnimalCentre
     {
         private IAnimalFactory animalFactory;
         private readonly IHotel hotel;
